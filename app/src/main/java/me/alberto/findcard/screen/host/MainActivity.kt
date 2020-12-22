@@ -1,7 +1,8 @@
-package me.alberto.findcard
+package me.alberto.findcard.screen.host
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import me.alberto.findcard.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
