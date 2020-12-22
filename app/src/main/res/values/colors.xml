@@ -15,4 +15,5 @@
     <color name="secondaryTextColor">#ffffff</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="faint_white">#B6B5B5</color>
 </resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/card_width"
+        android:layout_height="@dimen/card_height"
+        android:backgroundTint="@color/teal_200"
+        app:contentPadding="@dimen/pd_sm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/chip_size"
+                android:layout_height="@dimen/chip_size"
+                android:layout_marginTop="@dimen/chip_size"
+                android:src="@drawable/sim_card_chip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/pd_sm"
+                android:text="5199 3030 50XX XXXX"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/card_number_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="16 digits"
+                android:layout_marginStart="@dimen/pd_sm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_number" />
+
+            <TextView
+                tools:text="UBA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/pd_sm"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/pd_sm"
+                android:contentDescription="@string/logo_desc"
+                android:src="@drawable/ic_master_card_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Find Card</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_hint">Enter card number</string>
+    <string name="card_label_text">Enter first 6-9 digits on your card</string>
+    <string name="logo_desc">Bank logo</string>
 </resources>
