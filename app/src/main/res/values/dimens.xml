@@ -4,4 +4,5 @@
     <dimen name="card_height">200dp</dimen>
     <dimen name="pd_sm">5dp</dimen>
     <dimen name="chip_size">50dp</dimen>
+    <dimen name="mg_md">20dp</dimen>
 </resources>
