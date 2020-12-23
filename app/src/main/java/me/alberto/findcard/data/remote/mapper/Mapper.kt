@@ -6,8 +6,9 @@ import me.alberto.findcard.data.domain.model.CardNumber
 import me.alberto.findcard.data.domain.model.Country
 import me.alberto.findcard.data.remote.model.CardResponse
 
-fun CardResponse.toDomain(): Card {
+fun CardResponse.toDomain(cardNumber: String): Card {
     return Card(
+        cardNumber = cardNumber,
         number = CardNumber(number?.length, number?.luhn),
         type = type,
         scheme = scheme,

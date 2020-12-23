@@ -5,4 +5,5 @@
     <string name="card_hint">Enter card number</string>
     <string name="card_label_text">Enter first 6-9 digits on your card</string>
     <string name="logo_desc">Bank logo</string>
+    <string name="country_name">%s %s</string>
 </resources>
