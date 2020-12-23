@@ -28,7 +28,7 @@ class FindCardFragment : Fragment() {
     ): View? {
         binding = FragmentFindCardBinding.inflate(inflater, container, false)
 
-        initializations()
+        initCardAnimation()
         setClickListeners()
 
         return binding.root
@@ -56,8 +56,7 @@ class FindCardFragment : Fragment() {
         }
     }
 
-    private fun initializations() {
-
+    private fun initCardAnimation() {
         setRightOut =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.out_animation) as AnimatorSet
         setLeftIn =
