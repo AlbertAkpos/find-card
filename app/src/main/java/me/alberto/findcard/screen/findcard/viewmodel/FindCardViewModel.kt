@@ -9,6 +9,7 @@ import me.alberto.findcard.data.domain.model.Card
 import me.alberto.findcard.data.domain.usecase.GetCardDetailsUseCase
 import me.alberto.findcard.data.remote.mapper.toDomain
 import me.alberto.findcard.util.State
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class FindCardViewModel @Inject constructor(private val getCardDetailsUseCase: GetCardDetailsUseCase) :
@@ -19,7 +20,7 @@ class FindCardViewModel @Inject constructor(private val getCardDetailsUseCase: G
     val state: LiveData<State> = _state
 
     /**
-     * Get card details from remote
+     * Gets card details from remote
      * @param cardNumber number typed in by user
      */
     fun getCardDetails(cardNumber: String) {
@@ -30,16 +31,14 @@ class FindCardViewModel @Inject constructor(private val getCardDetailsUseCase: G
                 val result = getCardDetailsUseCase.execute(cardNumber)
                 val formattedNumber = formatCardNumber(cardNumber, result.number?.length?.toInt())
                 val cardDomain = result.toDomain(formattedNumber)
-                println("""
-                    
-                   
-                    domain: $cardDomain
-                    
-                """)
                 _card.postValue(cardDomain)
                 _state.postValue(State.Success(cardDomain))
             } catch (exp: Exception) {
-                _state.postValue(State.Error(exp.message ?: "Some error occurred"))
+                if (exp is HttpException) {
+                    _state.postValue(State.Error("Card number might not be valid"))
+                } else {
+                    _state.postValue(State.Error(exp.message ?: "Some error occurred"))
+                }
                 exp.printStackTrace()
             }
         }

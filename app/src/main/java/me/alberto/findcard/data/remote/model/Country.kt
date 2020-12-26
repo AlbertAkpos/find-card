@@ -14,7 +14,7 @@ data class _Country(
     @SerializedName("currency")
     val currency: String?,
     @SerializedName("latitude")
-    val latitude: Long?,
+    val latitude: Double?,
     @SerializedName("longitude")
-    val longitude: Long?
+    val longitude: Double?
 )

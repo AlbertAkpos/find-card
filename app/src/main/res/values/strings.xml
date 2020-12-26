@@ -6,4 +6,11 @@
     <string name="card_label_text">Enter first 6-9 digits on your card</string>
     <string name="logo_desc">Bank logo</string>
     <string name="country_name">%s %s</string>
+    <string name="empty"> </string>
+    <string name="visa">visa</string>
+    <string name="mastercard">mastercard</string>
+    <string name="american_express">amex</string>
+    <string name="discover">discover</string>
+    <string name="prepaid">Prepaid</string>
+    <string name="postpaid">Postpaid</string>
 </resources>

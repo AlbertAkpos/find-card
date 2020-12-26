@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.createBalloon
 import me.alberto.findcard.App
 import me.alberto.findcard.R
+import me.alberto.findcard.data.domain.model.Card
 import me.alberto.findcard.databinding.FragmentFindCardBinding
 import me.alberto.findcard.screen.findcard.viewmodel.FindCardViewModel
 import me.alberto.findcard.util.*
@@ -61,9 +61,7 @@ class FindCardFragment : Fragment() {
 
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
         override fun afterTextChanged(s: Editable?) {
             val text = s.toString().trim()
             if (text.length == ACCEPTED_CARD_NUMBER_RANGE) {
@@ -77,12 +75,8 @@ class FindCardFragment : Fragment() {
         viewModel.card.observe(viewLifecycleOwner) { card ->
             card ?: return@observe
             binding.card = card
-           println("""
-               
-               
-              card: $card 
-               
-           """)
+            //Always show front of card when result is gotten
+            showFront()
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -108,6 +102,8 @@ class FindCardFragment : Fragment() {
                     canShowToolTip()
                 }
             }
+            //Get the keyboard out of the way
+            binding.root.hideKeyboard()
 
         }
     }
@@ -116,6 +112,10 @@ class FindCardFragment : Fragment() {
         Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
     }
 
+    /**
+     * This method store toolTipShown value in shared preference
+     * and decides if to show tool tip or not
+     */
     private fun canShowToolTip() {
         val pref = requireActivity().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         val toolTipShown = pref.getBoolean(TOOL_TIP_PREF, false)
@@ -123,6 +123,10 @@ class FindCardFragment : Fragment() {
             showToolTip()
             pref.edit().putBoolean(TOOL_TIP_PREF, true).apply()
         }
+    }
+
+    private fun updateCard(card: Card) {
+
     }
 
 
@@ -152,6 +156,9 @@ class FindCardFragment : Fragment() {
     }
 
 
+    /**
+     * Flips the card 180 degree
+     */
     private fun flipCard() {
         if (!backCardVisible) {
             setRightOut.setTarget(binding.frontCard)
@@ -168,6 +175,19 @@ class FindCardFragment : Fragment() {
         }
     }
 
+    private fun showFront() {
+        if (backCardVisible) {
+            setRightOut.setTarget(binding.backCard)
+            setLeftIn.setTarget(binding.frontCard)
+            setRightOut.start()
+            setLeftIn.start()
+            backCardVisible = false
+        }
+    }
+
+    /**
+     * Initialize some properties for card animation
+     */
     private fun initCardAnimation() {
         setRightOut =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.out_animation) as AnimatorSet

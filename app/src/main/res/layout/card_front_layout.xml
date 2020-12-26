@@ -8,10 +8,6 @@
         <variable
             name="card"
             type="me.alberto.findcard.data.domain.model.Card" />
-
-        <variable
-            name="cardNumber"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +17,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
-            android:backgroundTint="@color/teal_200"
+            tools:backgroundTint="@color/secondaryDarkColor"
+            app:cardBackground="@{ card.scheme }"
             app:contentPadding="@dimen/pd_sm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,16 +45,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/pd_sm"
                     android:text="@{ card.cardNumber }"
-                    tools:text="5199 3030 XXXX XXXX"
                     android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    tools:text="5199 3030 XXXX XXXX" />
 
                 <TextView
                     android:id="@+id/card_number_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/pd_sm"
+                    android:text="@{ card.number.length == null ? @string/empty : Long.toString(card.number.length)  }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/card_number"
                     tools:text="16 digits" />
@@ -70,6 +68,7 @@
                     android:textStyle="italic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_number_length"
+                    app:prepaidStatus="@{ card.prepaid }"
                     tools:text="Prepaid" />
 
                 <TextView
@@ -77,12 +76,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/pd_sm"
+                    android:text="@{ card.bank.name }"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                     android:textStyle="italic"
-                    android:text="@{ card.bank.name }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="UBA" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pd_sm"
+                    android:layout_marginEnd="@dimen/pd_sm"
+                    android:text="@{ card.type }"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bank_name"
+                    tools:text="Credit" />
 
                 <ImageView
                     android:id="@+id/bank_logo"
@@ -90,9 +99,10 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="@dimen/pd_sm"
                     android:contentDescription="@string/logo_desc"
-                    android:src="@drawable/ic_master_card_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:scheme="@{ card.scheme }"
+                    tools:src="@drawable/ic_master_card_logo" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
