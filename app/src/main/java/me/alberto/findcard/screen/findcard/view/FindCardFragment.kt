@@ -64,7 +64,7 @@ class FindCardFragment : Fragment() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         override fun afterTextChanged(s: Editable?) {
             val text = s.toString().trim()
-            if (text.length == ACCEPTED_CARD_NUMBER_RANGE) {
+            if (text.length in 6..9) {
                 viewModel.getCardDetails(text)
             }
 

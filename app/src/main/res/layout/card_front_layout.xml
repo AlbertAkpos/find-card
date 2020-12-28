@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="card"
             type="me.alberto.findcard.data.domain.model.Card" />
@@ -17,13 +16,13 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/card_width"
             android:layout_height="@dimen/card_height"
-            tools:backgroundTint="@color/secondaryDarkColor"
             app:cardBackground="@{ card.scheme }"
             app:contentPadding="@dimen/pd_sm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/secondaryDarkColor">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

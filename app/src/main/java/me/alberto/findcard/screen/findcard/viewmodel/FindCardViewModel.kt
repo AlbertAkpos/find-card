@@ -52,7 +52,7 @@ class FindCardViewModel @Inject constructor(private val getCardDetailsUseCase: G
      */
     private fun formatCardNumber(cardNumber: String, cardNumberSize: Int?): String {
         val padding = cardNumberSize?.minus(cardNumber.length)
-        val defaultPadding = 7
+        val defaultPadding = 16 - cardNumber.length
         var _cardNumber = cardNumber
         var formattedNumber = ""
         repeat(padding ?: defaultPadding) { _cardNumber += "X" }
